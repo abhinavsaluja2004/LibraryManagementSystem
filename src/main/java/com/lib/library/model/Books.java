@@ -4,10 +4,13 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -15,18 +18,26 @@ import jakarta.persistence.Table;
 @Table(name = "books")
 public class Books {
     @Id
+    @Column(name = "bookid")
     private String BookId;
+    @Column(name = "bookname")
     private String bookName;
+    @Column(name = "author")
     private String Author;
+    @Column(name = "edition")
     private String Edition;
+    @Column(name = "category")
     private String Category;
+    @Column(name = "deweydecimal")
     private float DeweyDecimal;
+    @Column(name = "quantity")
     private int Quantity;
+    @Column(name = "summary")
     private String Summary;
     
     @JsonIgnore
-    @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
-    private Set<User> users;
+    @OneToMany(mappedBy = "books", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<borrow> borrow;
 
     public String getBookId() {
         return BookId;
@@ -36,11 +47,11 @@ public class Books {
         BookId = bookId;
     }
 
-    public String getbookName() {
+    public String getBookName() {
         return bookName;
     }
 
-    public void setbookName(String bookName) {
+    public void setBookName(String bookName) {
         this.bookName = bookName;
     }
 
@@ -92,14 +103,14 @@ public class Books {
         Summary = summary;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<borrow> getBorrow() {
+        return borrow;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setBorrow(Set<borrow> borrow) {
+        this.borrow = borrow;
     }
 
-    
+ 
 }
 

@@ -2,12 +2,16 @@ package com.lib.library.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
@@ -16,23 +20,18 @@ import jakarta.persistence.JoinColumn;
 @Table(name = "user")
 public class User {
     @Id
+    @Column(name = "userid")
     private String UserId;
+    @Column(name = "username")
     private String userName;
+    @Column(name = "userphno")
     private long UserPhno;
+    @Column(name = "usermail")
     private String UserMail;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "borrow",
-    joinColumns = {
-        @JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false, updatable = false)
-    
-    },
-
-    inverseJoinColumns = {
-        @JoinColumn(name = "BookId", referencedColumnName = "BookId", nullable = false, updatable = false)
-    }
-    )
-    private Set<Books> books;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<borrow> borrow;
 
     public String getUserId() {
         return UserId;
@@ -42,11 +41,11 @@ public class User {
         UserId = userId;
     }
 
-    public String getuserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setuserName(String userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -66,15 +65,15 @@ public class User {
         UserMail = userMail;
     }
 
-    public Set<Books> getBooks() {
-        return books;
+    public Set<borrow> getBorrow() {
+        return borrow;
     }
 
-    public void setBooks(Set<Books> books) {
-        this.books = books;
+    public void setBorrow(Set<borrow> borrow) {
+        this.borrow = borrow;
     }
 
-
+    
     
 
 

@@ -3,11 +3,12 @@ package com.lib.library.model;
 import jakarta.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "borrow")
 public class borrow {
     
-    private int id;
+    private Integer id;
 
     private User user;
     private Books books;
@@ -15,18 +16,23 @@ public class borrow {
     private Date borrowDate;
     private Date returnDate;
 
+    
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "borrow_id")
-    public int getId() {
+    @Column(name = "borrowid")
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+    
+    
 
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "UserId", referencedColumnName = "UserId")
     public User getUser() {
         return user;
@@ -35,7 +41,7 @@ public class borrow {
         this.user = user;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "BookId", referencedColumnName = "BookId")
     public Books getBooks() {
         return books;
@@ -43,8 +49,7 @@ public class borrow {
     public void setBooks(Books books) {
         this.books = books;
     }
-
-    @Column(name = "borrowDate")
+    @Column(name = "borrowdate")
     @Temporal(TemporalType.DATE)
     public Date getBorrowDate() {
         return borrowDate;
@@ -52,8 +57,7 @@ public class borrow {
     public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
     }
-
-    @Column(name = "returnDate")
+    @Column(name = "returndate")
     @Temporal(TemporalType.DATE)
     public Date getReturnDate() {
         return returnDate;
@@ -62,6 +66,5 @@ public class borrow {
         this.returnDate = returnDate;
     }
 
-    
 
 }
