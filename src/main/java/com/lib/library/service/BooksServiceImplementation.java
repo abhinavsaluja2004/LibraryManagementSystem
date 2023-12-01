@@ -1,7 +1,6 @@
 package com.lib.library.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +37,16 @@ public class BooksServiceImplementation implements BooksService{
     @Override
     public void save(Books books) {
         BooksRepository.save(books);
+    }
+
+    @Override
+    public void deleteBooksById(String id) {
+        BooksRepository.deleteById(id);
+    }
+    //count distinct books
+    @Override
+    public long countBooks() {
+        return BooksRepository.count();
     }
 
 }

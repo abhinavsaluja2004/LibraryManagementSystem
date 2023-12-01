@@ -16,6 +16,8 @@ public interface UserService {
 
     void save(User user);
 
+    void deleteUsersById(String id);
+
 
 
     

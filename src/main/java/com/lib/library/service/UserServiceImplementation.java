@@ -1,7 +1,6 @@
 package com.lib.library.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +34,11 @@ public class UserServiceImplementation implements UserService{
     @Override
     public void save(User user) {
         UserRepository.save(user);
+    }
+
+    @Override
+    public void deleteUsersById(String id) {
+        UserRepository.deleteById(id);
     }
 
 
