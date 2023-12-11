@@ -33,7 +33,9 @@ public class Books {
     private int Quantity;
     @Column(name = "summary")
     private String Summary;
-    
+    @Column(name = "imageurl")
+    private String ImageUrl;
+
     @JsonIgnore
     @OneToMany(mappedBy = "books", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<borrow> borrow;
@@ -102,6 +104,14 @@ public class Books {
         Summary = summary;
     }
 
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return ImageUrl;
+    }
+
     public Set<borrow> getBorrow() {
         return borrow;
     }
@@ -109,7 +119,5 @@ public class Books {
     public void setBorrow(Set<borrow> borrow) {
         this.borrow = borrow;
     }
-
- 
 }
 

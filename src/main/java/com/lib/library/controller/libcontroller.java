@@ -1,8 +1,11 @@
 package com.lib.library.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lib.library.model.Books;
 import com.lib.library.model.User;
@@ -18,11 +23,17 @@ import com.lib.library.model.borrow;
 import com.lib.library.service.BooksService;
 import com.lib.library.service.BorrowService;
 import com.lib.library.service.UserService;
+import com.lib.library.service.FileUpload;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/library_test")
 @CrossOrigin
+@RequiredArgsConstructor
 public class libcontroller {
+
+    private final FileUpload fileUpload;
 
     @Autowired
     private UserService UserService;
@@ -31,7 +42,8 @@ public class libcontroller {
     private BooksService BooksService;
 
     @Autowired
-    private BorrowService BorrowService;  
+    private BorrowService BorrowService; 
+    
     
     @PostMapping("/adduser")
     public String saveUserData(@RequestBody User user){
@@ -51,6 +63,14 @@ public class libcontroller {
     public String saveBooksData(@RequestBody Books Books){
         BooksService.save(Books);
         return "New Book added";
+    }
+
+    @PostMapping("/uploadImage")
+    public String uploadFile(@RequestParam("image")MultipartFile multipartFile,
+                             Model model) throws IOException {
+        String imageURL = fileUpload.uploadFile(multipartFile);
+        model.addAttribute("imageURL",imageURL);
+        return imageURL;
     }
     
     @GetMapping("/users")
