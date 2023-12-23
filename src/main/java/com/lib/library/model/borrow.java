@@ -16,6 +16,8 @@ public class borrow {
     private Date borrowDate;
     private Date returnDate;
 
+    private boolean isReturned;
+
     
 
 
@@ -64,6 +66,13 @@ public class borrow {
     }
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
+    }
+    @Column(name = "isreturned")
+    public boolean isReturned() {
+        return isReturned;
+    }
+    public void setReturned(boolean isReturned) {
+        this.isReturned = isReturned;
     }
 
 
