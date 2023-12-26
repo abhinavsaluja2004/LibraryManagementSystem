@@ -10,7 +10,7 @@ public interface UserService {
 
 
 
-    User getUserById(String id);
+    User getUserById(Long id);
 
     List<User> findByUserNameContaining(String userName);
 
@@ -18,7 +18,7 @@ public interface UserService {
 
     void save(User user);
 
-    void deleteUsersById(String id);
+    void deleteUsersById(Long id);
 
     Optional<User> findByUserMail(String userMail);
 

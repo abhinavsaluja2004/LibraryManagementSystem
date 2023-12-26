@@ -31,7 +31,7 @@ public class UserServiceImplementation implements UserService{
     private final VerificationTokenRepository tokenRepository;
 
     @Override
-    public User getUserById(String id) {
+    public User getUserById(Long id) {
         return UserRepository.findById(id).get();
     }
 
@@ -51,7 +51,7 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
-    public void deleteUsersById(String id) {
+    public void deleteUsersById(Long id) {
         UserRepository.deleteById(id);
     }
 
@@ -68,7 +68,7 @@ public class UserServiceImplementation implements UserService{
 
         }
         var newUser = new User();
-        newUser.setUserId(request.UserId());
+        //newUser.setUserId(request.UserId());
         newUser.setUserName(request.UserName());
         newUser.setUserPhno(request.UserPhno());
         newUser.setUserMail(request.userMail());

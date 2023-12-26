@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.lib.library.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String>{
+public interface UserRepository extends JpaRepository<User, Long>{
 
     List<User> findByUserNameContaining(String userName);
 

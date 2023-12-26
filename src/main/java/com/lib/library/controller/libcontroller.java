@@ -89,7 +89,7 @@ public class libcontroller {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable String id) {
+    public User getUserById(@PathVariable Long id) {
         return UserService.getUserById(id);
     }
 
@@ -120,7 +120,7 @@ public class libcontroller {
     }
 
     @DeleteMapping("/users/deleteusers/{id}")
-    public String deleteUsersById(@PathVariable String id) {
+    public String deleteUsersById(@PathVariable Long id) {
         UserService.deleteUsersById(id);
         return "User deleted with id : " + id;
     }
