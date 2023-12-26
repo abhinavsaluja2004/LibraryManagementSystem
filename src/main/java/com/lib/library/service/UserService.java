@@ -2,6 +2,8 @@ package com.lib.library.service;
 
 import java.util.*;
 import com.lib.library.model.User;
+import com.lib.library.registration.RegistrationRequest;
+import com.lib.library.registration.token.VerificationToken;
 
 
 public interface UserService {
@@ -17,6 +19,14 @@ public interface UserService {
     void save(User user);
 
     void deleteUsersById(String id);
+
+    Optional<User> findByUserMail(String userMail);
+
+    User registerUser(RegistrationRequest request);
+
+    void saveUserVerificationToken(User theUser, String verificationToken);
+
+    String validateToken(String theToken);
 
 
 

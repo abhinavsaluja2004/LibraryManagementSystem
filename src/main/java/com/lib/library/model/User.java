@@ -2,6 +2,8 @@ package com.lib.library.model;
 
 import java.util.Set;
 
+import org.hibernate.annotations.NaturalId;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -17,14 +19,22 @@ import jakarta.persistence.Table;
 @Table(name = "user")
 public class User {
     @Id
+    
     @Column(name = "userid")
     private String UserId;
     @Column(name = "username")
     private String userName;
     @Column(name = "userphno")
     private long UserPhno;
+    @NaturalId(mutable = true)
     @Column(name = "usermail")
-    private String UserMail;
+    private String userMail;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "userrole")
+    private String userRole;
+    @Column(name = "isenabled")
+    private Boolean isenabled=false;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -55,11 +65,11 @@ public class User {
     }
 
     public String getUserMail() {
-        return UserMail;
+        return userMail;
     }
 
-    public void setUserMail(String userMail) {
-        UserMail = userMail;
+    public void setUserMail(String UserMail) {
+        userMail = UserMail;
     }
 
     public Set<borrow> getBorrow() {
@@ -68,6 +78,30 @@ public class User {
 
     public void setBorrow(Set<borrow> borrow) {
         this.borrow = borrow;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public Boolean getIsenabled() {
+        return isenabled;
+    }
+
+    public void setIsenabled(Boolean isenabled) {
+        this.isenabled = isenabled;
     }
 
     
