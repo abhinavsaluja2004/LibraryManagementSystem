@@ -26,7 +26,7 @@ public class UserServiceImplementation implements UserService{
 
     private final UserRepository UserRepository;
 
-    private final PasswordEncoder passwordEncoder;
+    
 
     private final VerificationTokenRepository tokenRepository;
 
@@ -72,7 +72,7 @@ public class UserServiceImplementation implements UserService{
         newUser.setUserName(request.UserName());
         newUser.setUserPhno(request.UserPhno());
         newUser.setUserMail(request.userMail());
-        newUser.setPassword(passwordEncoder.encode(request.password()));
+        newUser.setPassword(request.password());
         newUser.setUserRole(request.UserRole());
         return UserRepository.save(newUser);
     }
